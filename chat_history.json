@@ -1,0 +1,54 @@
+[
+    {
+        "role": "assistant",
+        "content": "Welcome! Let's chat."
+    },
+    {
+        "role": "user",
+        "content": "hi"
+    },
+    {
+        "role": "assistant",
+        "content": "Sorry, an error occurred: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+    },
+    {
+        "role": "user",
+        "content": "hi"
+    },
+    {
+        "role": "assistant",
+        "content": "Sorry, an error occurred: 404 models/gemini-1.5-flash-001 is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+    },
+    {
+        "role": "user",
+        "content": "hi"
+    },
+    {
+        "role": "assistant",
+        "content": "Hello! It looks like I'm still encountering a technical problem when trying to generate a response. I apologize for the repeated error messages. I'm unable to process your request at the moment due to this issue on my end."
+    },
+    {
+        "role": "user",
+        "content": "okay"
+    },
+    {
+        "role": "assistant",
+        "content": "Thank you for your understanding. I'm sorry I can't be of more help right now due to this technical problem."
+    },
+    {
+        "role": "user",
+        "content": "how is the weather in vadodara"
+    },
+    {
+        "role": "assistant",
+        "content": "I'm sorry, but as an AI, I don't have real-time access to current weather conditions. I can't look up live weather for Vadodara.\n\nTo get the most accurate and up-to-date weather, I recommend checking a reliable weather website or app like:\n*   Google Weather (just search \"weather Vadodara\")\n*   AccuWeather\n*   The Weather Channel\n*   India Meteorological Department (IMD) website"
+    },
+    {
+        "role": "user",
+        "content": "how is the weather in vadodara"
+    },
+    {
+        "role": "assistant",
+        "content": "I cannot provide real-time weather information as I do not have access to live data. My knowledge cut-off is not current enough for up-to-the-minute weather.\n\nTo get the most accurate and current weather for Vadodara, I recommend checking a reliable weather source. You can usually find this by:\n*   Searching \"weather Vadodara\" on Google.\n*   Using a dedicated weather app (like AccuWeather, The Weather Channel, etc.).\n*   Visiting the website of a meteorological department, such as the India Meteorological Department (IMD)."
+    }
+]
