@@ -46,21 +46,21 @@ def stream_gemini_response(client, user_prompt, history):
         ),
     )
 
-    # Convert chat history
-    history_for_model = convert_history_for_gemini(history[:-1])
+    # Convert chat history into Gemini Content objects
+    contents = convert_history_for_gemini(history)
+    # Append the current prompt as the last message
+    contents.append(types.Content(role="user", parts=[types.Part(text=user_prompt)]))
 
     try:
         # Generate response stream
         response_stream = client.models.generate_content_stream(
             model=MODEL_NAME,
-            contents=[types.Content(role="user", parts=[types.Part(text=user_prompt)])],
-            config=config,
-            history=history_for_model
+            contents=contents,
+            config=config
         )
 
         full_response = ""
         for event in response_stream:
-            # Each event can have multiple candidates
             for candidate in getattr(event, "candidates", []):
                 for part in getattr(candidate.content, "parts", []):
                     if part.text:
