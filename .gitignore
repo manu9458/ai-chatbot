@@ -1,0 +1,11 @@
+venv
+testingfolder
+.gradio
+__pycache__
+.ipynb_checkpoints
+.DS_Store
+*.log
+*.pyc
+.env
+.git
+.pytest_cache
