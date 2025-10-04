@@ -29,6 +29,9 @@ def convert_history_for_gemini(st_history):
 
 
 def stream_gemini_response(client, user_prompt, history):
+    """
+    Streams response from Gemini LLM using generate_content_stream.
+    """
     if client is None:
         logger.error("Gemini client not initialized")
         return ""
@@ -43,19 +46,26 @@ def stream_gemini_response(client, user_prompt, history):
         ),
     )
 
+    # Convert chat history
     history_for_model = convert_history_for_gemini(history[:-1])
 
     try:
-        chat = client.chats.create(
+        # Generate response stream
+        response_stream = client.models.generate_content_stream(
             model=MODEL_NAME,
-            history=history_for_model,
+            contents=[types.Content(role="user", parts=[types.Part(text=user_prompt)])],
             config=config,
+            history=history_for_model
         )
 
         full_response = ""
-        for chunk in chat.send_message_stream(user_prompt):
-            if chunk.text:
-                full_response += chunk.text
+        for event in response_stream:
+            # Each event can have multiple candidates
+            for candidate in getattr(event, "candidates", []):
+                for part in getattr(candidate.content, "parts", []):
+                    if part.text:
+                        full_response += part.text
+
         return full_response
 
     except Exception as e:
