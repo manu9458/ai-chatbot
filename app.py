@@ -86,9 +86,10 @@ def display_doc_chat(client):
 
 
 def main():
-    st.set_page_config(page_title="Gemini Chatbot", page_icon="🤖", layout="wide")
-    st.title("🤖 Gemini Chatbot Multi-Section")
+    st.set_page_config(page_title="Aurora Genie", page_icon="🪐", layout="wide")
+    st.title("🪐 Aurora Genie")
     st.caption(f"Model: {MODEL_NAME}")
+
 
     client = get_gemini_client()
 
