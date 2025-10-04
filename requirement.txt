@@ -1,9 +1,9 @@
 streamlit
 python-dotenv
+google-generativeai
 PyPDF2
 python-docx
-google-genai
 pytest
 black
-isort
 flake8
+isort
