@@ -1,7 +1,11 @@
 import streamlit as st
+import pandas as pd
 from config import MODEL_NAME
 from doc_utils import extract_text_from_docx, extract_text_from_pdf
 from gemini_client import get_gemini_client, stream_gemini_response
+
+# Import the new data analysis feature from the separate file
+from data_analysis import display_data_analysis
 
 
 def display_qa_chat(messages, client):
@@ -29,7 +33,7 @@ def display_qa_chat(messages, client):
             messages.append({"role": "assistant", "content": response})
         else:
             # If not a simple greeting, generate a response using the model
-            with st.spinner("✨ Aurora is searching the document for your answer..."):
+            with st.spinner("✨ Aurora is searching..."):
                 response = stream_gemini_response(client, prompt, messages)
 
             if response:
@@ -44,7 +48,6 @@ def display_doc_chat(client):
     """
     # st.subheader("📄 Upload Document & Ask Questions")
 
-    # The file uploader key is now tied to a session state variable
     doc_file = st.file_uploader(
         "Upload a PDF or DOCX file to start the conversation",
         type=["pdf", "docx"],
@@ -129,10 +132,8 @@ def new_qa_chat():
 def new_doc_chat():
     save_chat(st.session_state.doc_messages, chat_type="doc")
     
-    # This is the fix: Increment the uploader key to force a reset
     st.session_state.doc_uploader_key += 1
 
-    # Resetting the chat state
     st.session_state.uploaded_doc_text = ""
     st.session_state.uploaded_doc_name = None
     st.session_state.doc_messages = [
@@ -164,7 +165,7 @@ def main():
 
     client = get_gemini_client()
 
-    # Initialize all session state variables, including the new uploader key
+    # Initialize all session state variables
     st.session_state.setdefault("qa_messages", [{"role": "assistant", "content": "Hello! I can answer your questions 🌤️"}])
     st.session_state.setdefault("doc_messages", [{"role": "assistant", "content": "I can answer questions based on uploaded documents 📄"}])
     st.session_state.setdefault("uploaded_doc_text", "")
@@ -173,10 +174,15 @@ def main():
     st.session_state.setdefault("current_chat_index", -1)
     st.session_state.setdefault("doc_chat_history", [])
     st.session_state.setdefault("current_doc_chat_index", -1)
-    st.session_state.setdefault("doc_uploader_key", 0) # New key for the uploader
+    st.session_state.setdefault("doc_uploader_key", 0)
+
+    # New session state variables for data analysis
+    st.session_state.setdefault("df", None)
+    st.session_state.setdefault("uploaded_file_name", None)
+    st.session_state.setdefault("data_analysis_messages", [])
 
     # ---------------- Sidebar menu ----------------
-    section = st.sidebar.selectbox("Choose Section", ["Q/A Chat", "Document Q/A"])
+    section = st.sidebar.selectbox("Choose Section", ["Q/A Chat", "Document Q/A", "Data Analysis"])
 
     # ------------------ Sections ------------------
     if section == "Q/A Chat":
@@ -211,6 +217,10 @@ def main():
                     load_doc_chat(i)
 
         display_doc_chat(client)
+
+    elif section == "Data Analysis":
+        # Call the imported function
+        display_data_analysis()
 
 
 if __name__ == "__main__":
