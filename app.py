@@ -161,7 +161,7 @@ def load_doc_chat(index):
 def main():
     st.set_page_config(page_title="Aurora Genie", page_icon="🪐", layout="wide")
     st.title("🪐 Aurora Genie")
-    st.caption(f"Model: {MODEL_NAME}")
+    # st.caption(f"Model: {MODEL_NAME}")
 
     client = get_gemini_client()
 
