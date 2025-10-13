@@ -33,7 +33,7 @@ def display_qa_chat(messages, client):
             messages.append({"role": "assistant", "content": response})
         else:
             # If not a simple greeting, generate a response using the model
-            with st.spinner("✨ Aurora is searching..."):
+            with st.spinner("✨ Aurora is generating..."):
                 response = stream_gemini_response(client, prompt, messages)
 
             if response:
