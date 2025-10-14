@@ -11,3 +11,7 @@ pandas
 matplotlib
 seaborn 
 plotly
+ydata-profiling
+openpyxl
+tabulate 
+kaleido
