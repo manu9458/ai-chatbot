@@ -62,7 +62,7 @@ def display_data_analysis():
                 3.  **Data Queries (AI Assistant):** Ask me anything in natural language about your dataset.
                 4.  **Data Cleaning Assistant:** Easily remove duplicates and fill missing values.
                 5.  **Outlier Detection:** Visualize and find outliers in numerical columns.
-                6.  **Custom Plotting:** Use the **'投 Create Custom Plot'** section below to interactively select axes and plot types.
+                6.  **Custom Plotting:** Use the **'Create Custom Plot'** section below to interactively select axes and plot types.
                 7.  **Correlation Heatmap:** Generate a heatmap showing the correlation between numerical columns.
                 8.  **Automatic Data Profiling:** Generates a full EDA report.
                 """
